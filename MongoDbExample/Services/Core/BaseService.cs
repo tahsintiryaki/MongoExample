@@ -12,9 +12,10 @@ public class BaseService<TEntity>:IBaseService<TEntity> where TEntity : class
     }
 
 
-    public Task Create(TEntity obj)
+    public async Task Create(TEntity obj)
     {
-        return _baseRepository.Create(obj);
+        await _baseRepository.Create(obj);
+        
     }
 
     public void Update(TEntity obj, string id )

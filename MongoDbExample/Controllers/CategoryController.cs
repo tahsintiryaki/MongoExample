@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MongoDbExample.DTO;
 using MongoDbExample.Entities;
+using MongoDbExample.RedisCache.Interfaces;
 using MongoDbExample.Repositories;
 using MongoDbExample.Services;
 
@@ -9,22 +10,24 @@ namespace MongoDbExample.Controllers;
 public class CategoryController : Controller
 {
     private readonly ICategoryService _categoryService;
-
-    public CategoryController(ICategoryService categoryService)
+    private readonly IRedisCacheService _redisCache;
+    public CategoryController(ICategoryService categoryService, IRedisCacheService redisCache)
     {
         _categoryService = categoryService;
+        _redisCache = redisCache;
     }
 
 
     [HttpPost("CreateCategory")]
-    public IActionResult Create(CreateCategoryDto model)
+    public async Task<IActionResult> Create(CreateCategoryDto model)
     {
         try
         {
-            _categoryService.Create(new Category()
+            await _categoryService.CreateCategoryandSetRedis(new Category()
             {
                 Name = model.Name,
-            });
+            },"Category");
+           
             return Ok("Success");
         }
         catch (Exception ex)
@@ -38,7 +41,7 @@ public class CategoryController : Controller
     {
         try
         {
-            var data = _categoryService.Get();
+            var data = _categoryService.GetCategoriesFromCache("Category");
             return Ok(new { result = "Success", data = data });
         }
         catch (Exception ex)

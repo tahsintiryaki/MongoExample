@@ -90,3 +90,6 @@
 /Users/tahsintiryaki/RiderProjects/MongoExample/MongoExample/MongoDbExample/obj/Debug/net7.0/MongoDbExample.pdb
 /Users/tahsintiryaki/RiderProjects/MongoExample/MongoExample/MongoDbExample/obj/Debug/net7.0/MongoDbExample.genruntimeconfig.cache
 /Users/tahsintiryaki/RiderProjects/MongoExample/MongoExample/MongoDbExample/obj/Debug/net7.0/ref/MongoDbExample.dll
+/Users/tahsintiryaki/RiderProjects/MongoExample/MongoExample/MongoDbExample/bin/Debug/net7.0/Newtonsoft.Json.dll
+/Users/tahsintiryaki/RiderProjects/MongoExample/MongoExample/MongoDbExample/bin/Debug/net7.0/Pipelines.Sockets.Unofficial.dll
+/Users/tahsintiryaki/RiderProjects/MongoExample/MongoExample/MongoDbExample/bin/Debug/net7.0/StackExchange.Redis.dll

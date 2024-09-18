@@ -1,6 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDbExample.MongoContexts;
+using MongoDbExample.RedisCache.Interfaces;
 
 namespace MongoDbExample.Repositories.Core;
 
@@ -8,6 +9,7 @@ public class BaseRepository<TEntity>:IBaseRepository<TEntity> where TEntity:clas
 {
     protected readonly IMongoDBContext _mongoContext;
     protected IMongoCollection<TEntity> _dbCollection;
+    
 
     public BaseRepository(IMongoDBContext mongoContext)
     {
@@ -21,6 +23,7 @@ public class BaseRepository<TEntity>:IBaseRepository<TEntity> where TEntity:clas
             throw new ArgumentNullException(typeof(TEntity).Name + " object is null");
         }
         await _dbCollection.InsertOneAsync(obj);
+        
     }
 
     public void Delete(string id)
